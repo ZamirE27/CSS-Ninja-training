@@ -1,0 +1,187 @@
+:root {
+  /* CSS variables for consistent theme colors */
+  --primary: #4f46e5;
+  --accent: #facc15;
+  --bg: #f3f4f6;
+  --text: #1f2937;
+}
+
+/* Default text color for all <div> elements */
+div {
+  color: var(--text);
+}
+
+/* ID selector to make text green */
+#special {
+  color: green;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh; /* Ensure the page fills full screen vertically */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url(/images/ninja-background-709i4scpo433h90e.jpg);
+  background-size: cover;            /* Make background fill the screen */
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;      /* Keeps background fixed when scrolling */
+  font-family: Arial, sans-serif;
+  color: var(--text);
+  padding: 20px;                     /* Inner spacing around the body */
+  gap: 20px;                         /* Space between direct child elements */
+}
+
+header {
+  background: linear-gradient(90deg, var(--primary), #6d28d9); /* Gradient background */
+  color: white;
+  padding: 10px 30px;               /* Vertical and horizontal padding */
+  border-radius: 20px;             /* Rounded corners */
+  text-align: center;
+  box-shadow: 0 8px 15px rgba(109, 40, 217, 0.5); /* Glow effect */
+  animation: float 3s ease-in-out infinite;       /* Floating animation */
+  overflow: hidden;
+  font-size: 1.1rem;
+  font-weight: bold;
+  position: relative;              /* Required for ::before pseudo-element */
+  width: 100%;
+  max-width: 600px;                /* Prevents header from being too wide */
+}
+
+/* Shine effect overlay on header */
+header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-25deg);     /* Diagonal light effect */
+  animation: shine 2s infinite;
+  pointer-events: none;         /* Allows clicks to pass through */
+  z-index: 1;                   /* Keep shine above content */
+}
+
+/* Gradient reverse on hover */
+header:hover {
+  background: linear-gradient(90deg, #6d28d9, var(--primary));
+}
+
+/* Change text color inside <h1> on hover */
+header h1:hover {
+  color: var(--text);
+}
+
+/* Shared styles for main content sections */
+.content,
+.visual-effects,
+.interactivity {
+  width: 100%;
+  max-width: 600px;              /* Limit width for readability */
+  padding: 20px;
+  margin: 10px auto;
+  border: 5px solid var(--primary);
+  box-sizing: border-box;        /* Ensures padding + border stay within width */
+  background: rgba(255, 255, 255, 0.7); /* Semi-transparent background */
+}
+
+/* Flex container for visual effects content */
+.visual-effects {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;                      /* Space between the content */
+}
+
+/* Simple styled box with shadow */
+.box {
+  border: 2px solid;
+  padding: 5px;
+  box-shadow: 0 8px 15px rgba(109, 40, 217, 0.5);
+}
+
+/* Rotated box with responsive text */
+.rotate-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 30px;                   /* Small base size */
+  height: 30px;
+  padding: 10px;
+  border-radius: 20%;
+  background: linear-gradient(90deg, #6d28d9, var(--primary));
+  transform: rotate(45deg);
+  transition: transform 2s ease; /* Smooth scale on hover */
+  overflow: hidden;
+  font-size: clamp(0.5rem, 0.5vw, 2rem); /* Responsive font size */
+  font-weight: bold;
+  transform-origin: center;
+}
+
+/* On hover, the box scales up (and text scales with it) */
+.rotate-box:hover {
+  transform: scale(5);
+}
+
+/* Link hover effect */
+a:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+/* Footer stays at bottom visually */
+footer {
+  text-align: center;
+  margin-top: auto;              /* Pushes footer to bottom in flex layout */
+  padding: 10px;
+  color: var(--bg);              /* Light text */
+}
+
+/* Floating up and down animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+/* Animation for the shine effect on header */
+@keyframes shine {
+  0% {
+    left: -75%;
+  }
+  100% {
+    left: 125%;
+  }
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .content,
+  .visual-effects,
+  .interactivity,
+  header {
+    max-width: 90%;             /* More flexible width on small screens */
+    font-size: 1rem;
+  }
+
+  .rotate-box {
+    width: 80px;
+    height: 80px;
+  }
+
+  body {
+    padding: 10px;
+    gap: 10px;
+  }
+}
